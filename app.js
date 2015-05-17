@@ -14,7 +14,20 @@ Ext.application({
     name: 'MyMenu',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'MyMenu.reader.MyMenuReader'
+    ],
+
+    models: [
+        'Place',
+        'Category',
+        'Product'
+    ],
+
+    stores:[
+        'MenuStore',
+        'CategoryStore',
+        'ProductStore'
     ],
 
     views: [
@@ -42,9 +55,10 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('MyMenu.view.Main'));
+        var store = Ext.create('Ext.data.Store', {
+            model: "MyMenu.model.Place"
+        });
+        store.load();
     },
 
     onUpdated: function() {
