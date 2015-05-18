@@ -1,17 +1,41 @@
 Ext.define('MyMenu.view.Main', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     xtype: 'mainview',
-    fullscreen: true,
     config: {
         itemId:'mainview',
-        layout: 'card',
+        layout: 'vbox',
         items: [
             {
-                xtype: 'categorylist'
+                flex:1,
+                html:"Welcome!"
             },
             {
-                html: "scanbarcode"
+                flex:1,
+                xtype: 'button',
+                text:'Scan barcode',
+                handler: function() {
+                    try{
+
+                        cordova.plugins.barcodeScanner.scan(
+                            function (result) {
+                                // alert("We got a barcode\n" +
+                                //     "Result: " + result.text + "\n" +
+                                //     "Format: " + result.format + "\n" +
+                                //     "Cancelled: " + result.cancelled);
+                                Ext.Msg.alert('Thank you', 'Welcome on table '+ result.text, Ext.emptyFn);
+                                Ext.Viewport.setActiveItem({
+                                    xtype : 'categorylistpanel'
+                                });
+                            }, 
+                            function (error) {
+                                alert("Scanning failed: " + error);
+                            }
+                        );
+                    }catch(e){
+                        alert(e);
+                    }
+                }
             }
-        ]
+        ],
     }
 });

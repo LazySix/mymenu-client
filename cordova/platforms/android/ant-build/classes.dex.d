@@ -1,0 +1,26 @@
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes.dex : \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$attr.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$menu.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$id.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/Manifest.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$dimen.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/BuildConfig.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$string.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$array.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$color.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$xml.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$layout.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$drawable.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/CordovaApp.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/Manifest$permission.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/lazysix/MyMenu/R$raw.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/plugin/gcm/PushPlugin.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/plugin/gcm/PushHandlerActivity.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/plugin/gcm/GCMIntentService.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/plugin/gcm/CordovaGCMBroadcastReceiver.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/classes/com/phonegap/plugins/barcodescanner/BarcodeScanner.class \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/dexedLibs/classes-347cef5098153e61bec9c0dbcb1a8e31.jar \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/dexedLibs/com.google.zxing.client.android.captureactivity-226a8e71e07239be04acb746c705eb12.jar \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/dexedLibs/gcm-2ab734ff54e48127c5ebfe323b6b9277.jar \
+/var/www/lazy/client2/cordova/platforms/android/ant-build/dexedLibs/android-support-v13-35d6d9abcdcc835f6cefb131890e3ddf.jar \

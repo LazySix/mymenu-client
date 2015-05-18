@@ -532,17 +532,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
-  "Ext.log.Base": [],
-  "Ext.log.Logger": [],
-  "Ext.log.filter.Filter": [],
-  "Ext.log.filter.Priority": [],
-  "Ext.log.formatter.Default": [],
-  "Ext.log.formatter.Formatter": [],
-  "Ext.log.formatter.Identity": [],
-  "Ext.log.writer.Console": [],
-  "Ext.log.writer.DocumentTitle": [],
-  "Ext.log.writer.Remote": [],
-  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -667,7 +656,18 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "MyMenu.view.Main": []
+  "MyMenu.model.Category": [],
+  "MyMenu.model.Place": [],
+  "MyMenu.model.Product": [],
+  "MyMenu.reader.MyMenuReader": [],
+  "MyMenu.store.CategoryStore": [],
+  "MyMenu.store.MenuStore": [],
+  "MyMenu.store.ProductStore": [],
+  "MyMenu.view.CategoryList": [],
+  "MyMenu.view.Main": [],
+  "MyMenu.view.ProductList": [],
+  "MyMenu.view.ProductListPanel": [],
+  "MyMenu.view.ProductView": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1248,17 +1248,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
-  "Ext.log.Base": [],
-  "Ext.log.Logger": [],
-  "Ext.log.filter.Filter": [],
-  "Ext.log.filter.Priority": [],
-  "Ext.log.formatter.Default": [],
-  "Ext.log.formatter.Formatter": [],
-  "Ext.log.formatter.Identity": [],
-  "Ext.log.writer.Console": [],
-  "Ext.log.writer.DocumentTitle": [],
-  "Ext.log.writer.Remote": [],
-  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -1399,8 +1388,29 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "MyMenu.model.Category": [],
+  "MyMenu.model.Place": [],
+  "MyMenu.model.Product": [],
+  "MyMenu.reader.MyMenuReader": [
+    "reader.mymenureader"
+  ],
+  "MyMenu.store.CategoryStore": [],
+  "MyMenu.store.MenuStore": [],
+  "MyMenu.store.ProductStore": [],
+  "MyMenu.view.CategoryList": [
+    "widget.categorylist"
+  ],
   "MyMenu.view.Main": [
-    "widget.main"
+    "widget.mainview"
+  ],
+  "MyMenu.view.ProductList": [
+    "widget.productlist"
+  ],
+  "MyMenu.view.ProductListPanel": [
+    "widget.productlistpanel"
+  ],
+  "MyMenu.view.ProductView": [
+    "widget.productview"
   ]
 });
 

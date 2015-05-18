@@ -11,7 +11,7 @@ Ext.define("MyMenu.model.Place", {
         },
         proxy: {
             type:'ajax',
-            url : "/menu.js",
+            url : "http://championsurvey.com/menu.php",
             reader: {
                 type: "mymenureader",
                 rootProperty: "users"

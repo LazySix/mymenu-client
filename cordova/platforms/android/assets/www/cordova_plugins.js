@@ -1,0 +1,25 @@
+cordova.define('cordova/plugin_list', function(require, exports, module) {
+module.exports = [
+    {
+        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.barcodescanner/www/barcodescanner.js",
+        "id": "com.phonegap.plugins.barcodescanner.BarcodeScanner",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
+        ]
+    }
+];
+module.exports.metadata = 
+// TOP OF METADATA
+{
+    "com.phonegap.plugins.PushPlugin": "2.2.1",
+    "com.phonegap.plugins.barcodescanner": "2.0.1"
+}
+// BOTTOM OF METADATA
+});

@@ -59,7 +59,6 @@ Ext.application({
 
     launch: function() {
         // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
         var store = Ext.create('Ext.data.Store', {
             model: "MyMenu.model.Place"
         });
@@ -75,9 +74,30 @@ Ext.application({
                 xtype: 'productlist'
             }
         );
-        Ext.Viewport.setActiveItem({
-            xtype : 'mainview'
-        });
+        Ext.fly('appLoadingIndicator').destroy();
+
+        try{
+            cordova.plugins.barcodeScanner.scan(
+                function (result) {
+                    // alert("We got a barcode\n" +
+                    //     "Result: " + result.text + "\n" +
+                    //     "Format: " + result.format + "\n" +
+                    //     "Cancelled: " + result.cancelled);
+                    Ext.Msg.alert('Thank you', 'Welcome on table '+ result.text, Ext.emptyFn);
+                    Ext.Viewport.setActiveItem({
+                        xtype : 'categorylist'
+                    });
+                }, 
+                function (error) {
+                    alert("Scanning failed: " + error);
+                }
+            );
+        }catch(e){
+            Ext.Viewport.setActiveItem({
+                xtype : 'mainview'
+            });
+            alert(e);
+        }
     },
 
     onUpdated: function() {
