@@ -10,12 +10,6 @@ Ext.define('MyMenu.view.Main', {
                 xtype: 'categorylist'
             },
             {
-                xtype: 'productlist'
-            },
-            {
-                html: "productview"
-            },
-            {
                 html: "scanbarcode"
             }
         ]

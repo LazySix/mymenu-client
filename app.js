@@ -35,7 +35,8 @@ Ext.application({
         'Main',
         'CategoryList',
         'ProductList',
-        'ProductView'
+        'ProductView',
+        'ProductListPanel'
     ],
 
     icon: {

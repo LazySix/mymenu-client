@@ -8,10 +8,9 @@ Ext.define('MyMenu.view.CategoryList', {
             select: function( me, record, eOpts ){
                 Ext.getStore('ProductStore').setFilters({property: "category_id", value: record.get('id')});
                 Ext.Viewport.setActiveItem({
-                    xtype : 'productlist'
+                    xtype : 'productlistpanel'
                 });
                 me.deselectAll();
-                // me.up('mainview').setActiveItem( 1 );
             },
         }
     }
