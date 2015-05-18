@@ -23,6 +23,28 @@
             },
             short_description: "500 ml",
             full_description: ""
+        },
+        {
+            id: 4,
+            name: "Pizza",
+            price: "2.00",
+            category: {
+                id: 3,
+                name: "Food"
+            },
+            short_description: "500 ml",
+            full_description: ""
+        },
+        {
+            id: 5,
+            name: "Meat",
+            price: "2.00",
+            category: {
+                id: 3,
+                name: "Food"
+            },
+            short_description: "500 ml",
+            full_description: ""
         }
     ]
 }

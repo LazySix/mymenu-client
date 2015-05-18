@@ -13,11 +13,12 @@ Ext.define('MyMenu.reader.MyMenuReader', {
                 name : product.name,
                 price: product.price,
                 short_description : product.short_description,
-                full_description  : product.full_description
+                full_description  : product.full_description,
+                category_id:product.category.id
             });
             storeProducts.add(tmpProduct);
             if (product.category && product.category.id) {
-                if (storeCategories.find(product.category.id) == -1) {
+                if (storeCategories.find('id',product.category.id) == -1) {
                     var tmpCategory = Ext.create('MyMenu.model.Category', {
                         id: product.category.id,
                         name: product.category.name

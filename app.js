@@ -15,6 +15,7 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
+        'Ext.Container',
         'MyMenu.reader.MyMenuReader'
     ],
 
@@ -31,7 +32,10 @@ Ext.application({
     ],
 
     views: [
-        'Main'
+        'Main',
+        'CategoryList',
+        'ProductList',
+        'ProductView'
     ],
 
     icon: {
@@ -59,6 +63,20 @@ Ext.application({
             model: "MyMenu.model.Place"
         });
         store.load();
+        Ext.Viewport.add(
+            {
+                xtype: 'mainview'
+            },
+            {
+                xtype: 'categorylist'
+            },
+            {
+                xtype: 'productlist'
+            }
+        );
+        Ext.Viewport.setActiveItem({
+            xtype : 'mainview'
+        });
     },
 
     onUpdated: function() {
