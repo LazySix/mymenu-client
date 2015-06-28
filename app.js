@@ -22,13 +22,16 @@ Ext.application({
     models: [
         'Place',
         'Category',
-        'Product'
+        'Product',
+        'Order'
     ],
 
     stores:[
         'MenuStore',
         'CategoryStore',
-        'ProductStore'
+        'ProductStore',
+        'OrderStore',
+        'TableStore'
     ],
 
     views: [
@@ -36,7 +39,8 @@ Ext.application({
         'CategoryList',
         'ProductList',
         'ProductView',
-        'ProductListPanel'
+        'ProductListPanel',
+        'OrderView'
     ],
 
     icon: {
@@ -72,6 +76,9 @@ Ext.application({
             },
             {
                 xtype: 'productlist'
+            },
+            {
+                xtype: 'orderview'
             }
         );
         Ext.fly('appLoadingIndicator').destroy();
@@ -83,10 +90,25 @@ Ext.application({
                     //     "Result: " + result.text + "\n" +
                     //     "Format: " + result.format + "\n" +
                     //     "Cancelled: " + result.cancelled);
-                    Ext.Msg.alert('Thank you', 'Welcome on table '+ result.text, Ext.emptyFn);
                     Ext.Viewport.setActiveItem({
                         xtype : 'categorylist'
                     });
+                    var tableId = 1;
+                    Ext.Ajax.request({
+                        url: 'http://www.getideafrom.me/api/rest/post/' + tableId + '/',
+                        params: {
+                            "action": "sit_on_this_table"
+                        },
+                        success: function(response){
+                            var text = response.responseText;
+                            // process server response here
+                            // check if order id is returned - free table
+                        }
+                    });
+
+                    // TODO add result.text
+                    Ext.getStore('TableStore').add({'table_id': tableId});
+
                 }, 
                 function (error) {
                     alert("Scanning failed: " + error);
