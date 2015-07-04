@@ -64,6 +64,14 @@ Ext.application({
     },
 
     launch: function() {
+        // change app.css to flat.css
+        var allLinkTags = document.getElementsByTagName('link');
+        for (i = 0 ; i < allLinkTags.length; i++) {
+            if (allLinkTags[i].href="resources/css/app.css") {
+                allLinkTags[i].href = "resources/css/flat.css"
+                
+            }
+        }
         // Destroy the #appLoadingIndicator element
         var store = Ext.create('Ext.data.Store', {
             model: "MyMenu.model.Place"
