@@ -109,11 +109,10 @@ Ext.application({
 
     scanBarcode: function() {
         var me = this;
-        // try{
-        //     cordova.plugins.barcodeScanner.scan(
-        //         function (result) {
-        //             var tableId = result.text;
-                    var tableId = 11;
+        try{
+            cordova.plugins.barcodeScanner.scan(
+                function (result) {
+                    var tableId = result.text;
                     Ext.Ajax.request({
                         url: 'http://www.getideafrom.me/api/rest/post/' + tableId + '/',
                         headers: {
@@ -137,9 +136,9 @@ Ext.application({
                                         me.scanBarcode();
                                    }
                                 });
-                                // Ext.Msg.alert('Error', responseJson.reason, function(){
-                                //     me.scanBarcode();
-                                // }); 
+                                Ext.Msg.alert('Error', responseJson.reason, function(){
+                                    me.scanBarcode();
+                                }); 
                             }
                             else {
                                 Ext.getStore('TableStore').add({'table_id': tableId});
@@ -150,17 +149,17 @@ Ext.application({
                             }
                         }
                     });
-        //         }, 
-        //         function (error) {
-        //             alert("Scanning failed: " + error);
-        //         }
-        //     );
+                }, 
+                function (error) {
+                    alert("Scanning failed: " + error);
+                }
+            );
 
-        // }catch(e){
-        //     Ext.Viewport.setActiveItem({
-        //         xtype : 'mainview'
-        //     });
-        //     alert(e);
-        // }
+        }catch(e){
+            Ext.Viewport.setActiveItem({
+                xtype : 'mainview'
+            });
+            alert(e);
+        }
     }
 });

@@ -67,8 +67,8 @@ Ext.define('MyMenu.view.OrderView',{
                 Ext.getStore('OrderStore').each(function(record){
                     var orderProduct = Ext.getStore('ProductStore').findRecord('id', record.get('product_id'));
                     if (typeof orderProduct !== 'undefined' && orderProduct) {
-                        var currentPrice = record.get('quantity') * parseFloat(orderProduct.get('price'),10);
-                        totalPrice += currentPrice;
+                        var currentPrice = (record.get('quantity') * parseFloat(orderProduct.get('price'),10)).toFixed( 2 );
+                        totalPrice =  parseFloat(totalPrice,10) + parseFloat(currentPrice,10);
                         containerHtml.push(
                             record.get('quantity') + ' x ' + orderProduct.get('name') + ' - ' + currentPrice + ' lv.'
                         );

@@ -15,7 +15,7 @@ Ext.define('MyMenu.view.Main', {
                 text:'Menu',
                 handler: function() {
                     Ext.Viewport.setActiveItem({
-                        xtype : 'categorylist'
+                        xtype : 'maintabs'
                     });
                 }
             },
