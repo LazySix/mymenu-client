@@ -6,36 +6,33 @@ Ext.define('MyMenu.view.Main', {
         layout: 'vbox',
         items: [
             {
-                flex:1,
+                flex:5,
                 html:"Welcome!"
             },
             {
                 flex:1,
                 xtype: 'button',
-                text:'Scan barcode',
+                text:'Menu',
                 handler: function() {
-                    try{
-
-                        cordova.plugins.barcodeScanner.scan(
-                            function (result) {
-                                // alert("We got a barcode\n" +
-                                //     "Result: " + result.text + "\n" +
-                                //     "Format: " + result.format + "\n" +
-                                //     "Cancelled: " + result.cancelled);
-                                Ext.Msg.alert('Thank you', 'Welcome on table '+ result.text, Ext.emptyFn);
-                                Ext.Viewport.setActiveItem({
-                                    xtype : 'categorylistpanel'
-                                });
-                            }, 
-                            function (error) {
-                                alert("Scanning failed: " + error);
-                            }
-                        );
-                    }catch(e){
-                        alert(e);
-                    }
+                    Ext.Viewport.setActiveItem({
+                        xtype : 'categorylist'
+                    });
                 }
+            },
+            {
+                flex:1,
+                xtype: 'button',
+                text:'Orders',
+                handler: function() {
+                    Ext.Viewport.setActiveItem({
+                        xtype : 'orderview'
+                    });
+                }
+            },
+            {
+                xtype: 'container',
+                flex:2
             }
-        ],
+        ]
     }
 });

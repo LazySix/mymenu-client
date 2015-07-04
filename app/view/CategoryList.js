@@ -6,12 +6,12 @@ Ext.define('MyMenu.view.CategoryList', {
         store: 'CategoryStore',
         listeners: {
             select: function( me, record, eOpts ){
-                Ext.getStore('ProductStore').setFilters({property: "category_id", value: record.get('id')});
-                Ext.Viewport.setActiveItem({
-                    xtype : 'productlistpanel'
-                });
+                var productStore = Ext.getStore('ProductStore');
+                productStore.clearFilter();
+                productStore.filter('category_id', record.get('id'));
+                this.up('menuview').setActiveItem(1);
                 me.deselectAll();
-            },
+            }
         }
     }
 });

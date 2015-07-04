@@ -657,14 +657,18 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "MyMenu.model.Category": [],
+  "MyMenu.model.Order": [],
   "MyMenu.model.Place": [],
   "MyMenu.model.Product": [],
   "MyMenu.reader.MyMenuReader": [],
   "MyMenu.store.CategoryStore": [],
   "MyMenu.store.MenuStore": [],
+  "MyMenu.store.OrderStore": [],
   "MyMenu.store.ProductStore": [],
+  "MyMenu.store.TableStore": [],
   "MyMenu.view.CategoryList": [],
   "MyMenu.view.Main": [],
+  "MyMenu.view.OrderView": [],
   "MyMenu.view.ProductList": [],
   "MyMenu.view.ProductListPanel": [],
   "MyMenu.view.ProductView": []
@@ -1389,6 +1393,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
   "MyMenu.model.Category": [],
+  "MyMenu.model.Order": [],
   "MyMenu.model.Place": [],
   "MyMenu.model.Product": [],
   "MyMenu.reader.MyMenuReader": [
@@ -1396,12 +1401,17 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "MyMenu.store.CategoryStore": [],
   "MyMenu.store.MenuStore": [],
+  "MyMenu.store.OrderStore": [],
   "MyMenu.store.ProductStore": [],
+  "MyMenu.store.TableStore": [],
   "MyMenu.view.CategoryList": [
     "widget.categorylist"
   ],
   "MyMenu.view.Main": [
     "widget.mainview"
+  ],
+  "MyMenu.view.OrderView": [
+    "widget.orderview"
   ],
   "MyMenu.view.ProductList": [
     "widget.productlist"

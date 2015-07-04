@@ -36,6 +36,8 @@ Ext.application({
 
     views: [
         'Main',
+        'MainTabs',
+        'MenuView',
         'CategoryList',
         'ProductList',
         'ProductView',
@@ -69,56 +71,27 @@ Ext.application({
         store.load();
         Ext.Viewport.add(
             {
+                xtype: 'container'
+            },
+            {
                 xtype: 'mainview'
             },
             {
-                xtype: 'categorylist'
-            },
-            {
-                xtype: 'productlist'
-            },
-            {
-                xtype: 'orderview'
+                xtype: 'maintabs'
             }
         );
         Ext.fly('appLoadingIndicator').destroy();
 
-        try{
-            cordova.plugins.barcodeScanner.scan(
-                function (result) {
-                    // alert("We got a barcode\n" +
-                    //     "Result: " + result.text + "\n" +
-                    //     "Format: " + result.format + "\n" +
-                    //     "Cancelled: " + result.cancelled);
-                    Ext.Viewport.setActiveItem({
-                        xtype : 'categorylist'
-                    });
-                    var tableId = 1;
-                    Ext.Ajax.request({
-                        url: 'http://www.getideafrom.me/api/rest/post/' + tableId + '/',
-                        params: {
-                            "action": "sit_on_this_table"
-                        },
-                        success: function(response){
-                            var text = response.responseText;
-                            // process server response here
-                            // check if order id is returned - free table
-                        }
-                    });
+        Ext.getStore('TableStore').load();
+        Ext.getStore('OrderStore').load();
 
-                    // TODO add result.text
-                    Ext.getStore('TableStore').add({'table_id': tableId});
-
-                }, 
-                function (error) {
-                    alert("Scanning failed: " + error);
-                }
-            );
-        }catch(e){
+        if (Ext.getStore('TableStore').getCount() == 0) {
+            this.scanBarcode();
+        }
+        else {
             Ext.Viewport.setActiveItem({
-                xtype : 'mainview'
+                xtype : 'maintabs'
             });
-            alert(e);
         }
     },
 
@@ -132,5 +105,62 @@ Ext.application({
                 }
             }
         );
+    },
+
+    scanBarcode: function() {
+        var me = this;
+        // try{
+        //     cordova.plugins.barcodeScanner.scan(
+        //         function (result) {
+        //             var tableId = result.text;
+                    var tableId = 11;
+                    Ext.Ajax.request({
+                        url: 'http://www.getideafrom.me/api/rest/post/' + tableId + '/',
+                        headers: {
+                            'Authorization': 'Token aef455b223b8908217d2162ddf45181fadd8c1ab'
+                        },
+                        params:'{"action":"sit_on_this_table"}',
+                        success: function(response){
+                            var responseJson = JSON.parse(response.responseText);
+                            // process server response here
+                            // check if order id is returned - free table
+                            if (responseJson.error == true) {
+                                Ext.Msg.show({
+                                   title: 'Error',
+                                   message: responseJson.reason,
+                                   fullscreen: true,
+                                   showAnimation: null,
+                                   hideAnimation: null,
+                                   buttons: Ext.MessageBox.OK,
+                                   
+                                   fn: function(buttonId) {
+                                        me.scanBarcode();
+                                   }
+                                });
+                                // Ext.Msg.alert('Error', responseJson.reason, function(){
+                                //     me.scanBarcode();
+                                // }); 
+                            }
+                            else {
+                                Ext.getStore('TableStore').add({'table_id': tableId});
+                                Ext.getStore('TableStore').sync();
+                                Ext.Viewport.setActiveItem({
+                                    xtype : 'mainview'
+                                });
+                            }
+                        }
+                    });
+        //         }, 
+        //         function (error) {
+        //             alert("Scanning failed: " + error);
+        //         }
+        //     );
+
+        // }catch(e){
+        //     Ext.Viewport.setActiveItem({
+        //         xtype : 'mainview'
+        //     });
+        //     alert(e);
+        // }
     }
 });

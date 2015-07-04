@@ -3,7 +3,6 @@
  */
 
 .x-msgbox {
-    margin: .5em;
     border: .15em solid $base-color;
 
     @include box-shadow(rgba(#000, .4) 0 .1em .5em);
