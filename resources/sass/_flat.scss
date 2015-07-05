@@ -1,0 +1,103 @@
+@import 'themes/stylesheets/sencha-touch/flat';
+@import 'themes/stylesheets/sencha-touch/flat/all';
+
+@include icon('retweet');
+
+.x-html pre {
+    margin: 0;
+}
+
+.card > .x-body .x-innerhtml,
+.card > .x-inner > .x-innerhtml,
+.card > .x-dock-vertical > .x-dock-body .x-innerhtml {
+   padding: 10px;
+}
+
+.ks-basic .x-dataview {
+    background: #eee;
+
+    .x-dataview-item {
+        padding: 1em;
+        text-align: center;
+        color: #000;
+
+        img {
+            margin: 1em;
+        }
+
+        &:nth-child(odd) {
+            color: white;
+            background: #3498db;
+        }
+        &:nth-child(even) {
+            color: #2980b9;
+            background: white;
+        }
+    }
+}
+
+#launchscreen {
+    padding: 0 20px;
+
+    h2 {
+        clear: both;
+
+        span {
+            font-size: 24px;
+            color: rgba(255,255,255,.6);
+        }
+    }
+
+    .feature {
+        background: #edeff1;
+        padding: 20px;
+        margin: 10px 20px 20px 0;
+        min-height: 150px;
+        float: left;
+        border-radius: 6px;
+
+        &.main {
+            float: normal;
+            width: auto;
+            min-height: auto;
+        }
+
+        img {
+            display: none;
+        }
+
+        h3 {
+            font-size: 24px;
+            line-height: 24px;
+            margin-bottom: 10px;
+            color: #9aa4af;
+        }
+
+        p {
+            font-size: 15px;
+            color: #bac1c8;
+        }
+    }
+
+    footer {
+        clear: both;
+        font-size: 15px;
+    }
+}
+
+a:link {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+a:active {
+    color: #2980b9;
+}
+
+a:visited {
+    color: #2980b9;
+}
