@@ -94,6 +94,21 @@ Ext.application({
             this.scanBarcode();
         }
         else {
+            var store = Ext.create('Ext.data.Store', {
+                model: "MyMenu.model.Place"
+            });
+
+            var menuId = Ext.getStore('TableStore').getAt(0).get('menu_id');
+            store.setProxy({
+                type:'ajax',
+                url : "http://www.getideafrom.me/api/rest/menu/" + menuId +"/",
+                reader: {
+                    type: "mymenureader",
+                    rootProperty: "users"
+                }
+            });
+            store.load();
+
             Ext.Viewport.setActiveItem({
                 xtype : 'maintabs'
             });
@@ -158,7 +173,8 @@ Ext.application({
 
                                 Ext.getStore('TableStore').add({
                                     'table_id': tableId,
-                                    'table_code': responseJson.table_code
+                                    'table_code': responseJson.table_code,
+                                    'menu_id': responseJson.menu_id
                                 });
 
                                 Ext.getStore('TableStore').sync();

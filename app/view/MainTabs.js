@@ -2,6 +2,7 @@ Ext.define('MyMenu.view.MainTabs', {
     extend: 'Ext.TabPanel',
     xtype: 'maintabs',
     config: {
+        itemIndex:-1,
         itemId:'maintabs',
         fullscreen: true,
         tabBarPosition: 'bottom',
@@ -18,5 +19,8 @@ Ext.define('MyMenu.view.MainTabs', {
                 xtype: 'orderview'
             }
         ]
+    },
+    updateItemIndex: function(newItemId) {
+        this.setActiveItem(newItemId);
     }
 });

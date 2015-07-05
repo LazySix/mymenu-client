@@ -25,7 +25,8 @@ Ext.define('MyMenu.view.Main', {
                 text:'Orders',
                 handler: function() {
                     Ext.Viewport.setActiveItem({
-                        xtype : 'orderview'
+                        xtype : 'maintabs',
+                        itemIndex: 1
                     });
                 }
             },

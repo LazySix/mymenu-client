@@ -17,7 +17,7 @@ Ext.define('MyMenu.view.ProductView', {
                 itemId: 'productcontainer',
                 scrollable: true,
                 xtype: 'container',
-                tpl:"Product name:{name} <br> Product price: {price} <br> Product short description:{s_description} <br> Product description:{description}"
+                tpl:"<b>{name}<br> <i>{price}lv.</i></b> <br> {s_description} <br>{description}"
             },
             {
                 flex:2,
@@ -48,6 +48,7 @@ Ext.define('MyMenu.view.ProductView', {
                     var newProductToOrder = {};
                     newProductToOrder[productId] = quantiyValue;
                     var table_id = Ext.getStore('TableStore').getAt(0).get('table_id');
+                    var table_code = Ext.getStore('TableStore').getAt(0).get('table_code');
                     Ext.Ajax.request({
                         headers: {
                             'Authorization': 'Token aef455b223b8908217d2162ddf45181fadd8c1ab'
@@ -59,6 +60,8 @@ Ext.define('MyMenu.view.ProductView', {
                         }),
                         success: function(response){
                             var text = response.responseText;
+                            var date = new Date();
+                            var timeString = date.getHours() + ':' + date.getMinutes();
                             // process server response here
                             Ext.Ajax.request({
                                 url: 'http://championsurvey.com/lazy/push_msg.php',
@@ -66,7 +69,7 @@ Ext.define('MyMenu.view.ProductView', {
                                 dataType: 'jsonp',
                                 useDefaultXhrHeader: false,
                                 params: {
-                                    'msg': "T"+table_id+ '; Q:' + quantiyValue + '; P:' + productName
+                                    'msg': timeString + "Поръчка: Маса:" + table_code + '; ' + productName + ' - ' + quantiyValue + 'бр.'
                                 }
                             });
                         }

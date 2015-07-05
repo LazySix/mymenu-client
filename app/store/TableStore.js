@@ -4,7 +4,8 @@ Ext.define('MyMenu.store.TableStore',{
         autoSync: true,
         fields: [
             'table_id',
-            'table_code'
+            'table_code',
+            'menu_id'
         ],
         proxy: {
             type: 'localstorage',

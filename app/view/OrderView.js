@@ -23,6 +23,7 @@ Ext.define('MyMenu.view.OrderView',{
                         handler: function() {
                             if (Ext.getStore('TableStore').getAllCount() > 0) {
                                 var tableId = Ext.getStore('TableStore').getAt(0).get('table_id')
+                                var tableCode = Ext.getStore('TableStore').getAt(0).get('table_code')
                                 Ext.Ajax.request({
                                     url: 'http://www.getideafrom.me/api/rest/post/' + tableId + '/',
                                     headers: {
@@ -30,13 +31,15 @@ Ext.define('MyMenu.view.OrderView',{
                                     },
                                     params:'{"action":"pay_the_bill"}',
                                     success: function(response){
+                                        var date = new Date();
+                                        var timeString = date.getHours() + ':' + date.getMinutes();
                                         Ext.Ajax.request({
                                             url: 'http://championsurvey.com/lazy/push_msg.php',
                                             method: 'GET',
                                             dataType: 'jsonp',
                                             useDefaultXhrHeader: false,
                                             params: {
-                                                'msg': "T" + tableId +  '; Pay bill'
+                                                'msg': timeString + " Сметка:" + tableCode
                                             }
                                         });
                                         Ext.Msg.show({
@@ -89,7 +92,7 @@ Ext.define('MyMenu.view.OrderView',{
                         );
                 }
                 this.down('#ordercontainer').setHtml(containerHtml.join('<br>'));
-                this.down('#total-price').setHtml('Total price: ' + totalPrice + 'lv.');
+                this.down('#total-price').setHtml('Total price: ' + totalPrice.toFixed( 2 ) + 'lv.');
             }
         }
     }
