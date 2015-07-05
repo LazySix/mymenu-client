@@ -42,16 +42,17 @@ Ext.define('MyMenu.view.ProductView', {
                 handler: function() {
                     var quantiyValue = this.up('productview').down('#quantity').getValue();
                     var productId = this.up('productview').getRecord().get('id');
+                    var productName = this.up('productview').getRecord().get('name');
                     Ext.getStore('OrderStore').add({ product_id: productId, quantity: quantiyValue});
                     Ext.getStore('OrderStore').sync();
                     var newProductToOrder = {};
                     newProductToOrder[productId] = quantiyValue;
-
+                    var table_id = Ext.getStore('TableStore').getAt(0).get('table_id');
                     Ext.Ajax.request({
                         headers: {
                             'Authorization': 'Token aef455b223b8908217d2162ddf45181fadd8c1ab'
                         },
-                        url: 'http://www.getideafrom.me/api/rest/post/' + Ext.getStore('TableStore').getAt(0).get('table_id') + '/',
+                        url: 'http://www.getideafrom.me/api/rest/post/' + table_id + '/',
                         params: JSON.stringify({
                             "action": "add_in_order", 
                             "products": newProductToOrder
@@ -59,6 +60,15 @@ Ext.define('MyMenu.view.ProductView', {
                         success: function(response){
                             var text = response.responseText;
                             // process server response here
+                            Ext.Ajax.request({
+                                url: 'http://championsurvey.com/lazy/push_msg.php',
+                                method: 'GET',
+                                dataType: 'jsonp',
+                                useDefaultXhrHeader: false,
+                                params: {
+                                    'msg': "T"+table_id+ '; Q:' + quantiyValue + '; P:' + productName
+                                }
+                            });
                         }
                     });
                     Ext.Msg.alert('Message', 'The item was added to your order successful.', Ext.emptyFn);

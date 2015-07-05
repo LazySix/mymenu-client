@@ -64,19 +64,16 @@ Ext.application({
     },
 
     launch: function() {
-        // change app.css to flat.css
-        var allLinkTags = document.getElementsByTagName('link');
-        for (i = 0 ; i < allLinkTags.length; i++) {
-            if (allLinkTags[i].href="resources/css/app.css") {
-                allLinkTags[i].href = "resources/css/flat.css"
+        // // change app.css to flat.css
+        // var allLinkTags = document.getElementsByTagName('link');
+        // for (i = 0 ; i < allLinkTags.length; i++) {
+        //     if (allLinkTags[i].href="resources/css/app.css") {
+        //         allLinkTags[i].href = "resources/css/flat.css"
                 
-            }
-        }
+        //     }
+        // }
         // Destroy the #appLoadingIndicator element
-        var store = Ext.create('Ext.data.Store', {
-            model: "MyMenu.model.Place"
-        });
-        store.load();
+
         Ext.Viewport.add(
             {
                 xtype: 'container'
@@ -143,18 +140,46 @@ Ext.application({
                                    fn: function(buttonId) {
                                         me.scanBarcode();
                                    }
-                                });
-                                Ext.Msg.alert('Error', responseJson.reason, function(){
-                                    me.scanBarcode();
                                 }); 
                             }
                             else {
-                                Ext.getStore('TableStore').add({'table_id': tableId});
+                                var store = Ext.create('Ext.data.Store', {
+                                    model: "MyMenu.model.Place"
+                                });
+                                store.setProxy({
+                                    type:'ajax',
+                                    url : "http://www.getideafrom.me/api/rest/menu/" + responseJson.menu_id +"/",
+                                    reader: {
+                                        type: "mymenureader",
+                                        rootProperty: "users"
+                                    }
+                                });
+                                store.load();
+
+                                Ext.getStore('TableStore').add({
+                                    'table_id': tableId,
+                                    'table_code': responseJson.table_code
+                                });
+
                                 Ext.getStore('TableStore').sync();
                                 Ext.Viewport.setActiveItem({
                                     xtype : 'mainview'
                                 });
                             }
+                        },
+                        failure: function(error) {
+                            Ext.Msg.show({
+                               title: 'Error',
+                               message: 'Please scan again!',
+                               fullscreen: true,
+                               showAnimation: null,
+                               hideAnimation: null,
+                               buttons: Ext.MessageBox.OK,
+                               
+                               fn: function(buttonId) {
+                                    me.scanBarcode();
+                               }
+                            });
                         }
                     });
                 }, 

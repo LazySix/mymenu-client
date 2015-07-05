@@ -30,6 +30,15 @@ Ext.define('MyMenu.view.OrderView',{
                                     },
                                     params:'{"action":"pay_the_bill"}',
                                     success: function(response){
+                                        Ext.Ajax.request({
+                                            url: 'http://championsurvey.com/lazy/push_msg.php',
+                                            method: 'GET',
+                                            dataType: 'jsonp',
+                                            useDefaultXhrHeader: false,
+                                            params: {
+                                                'msg': "T" + tableId +  '; Pay bill'
+                                            }
+                                        });
                                         Ext.Msg.show({
                                            title: 'Pay the bill',
                                            message: "Thank you for using MyMenu! <br> Waitress will bring your bill soon. <br>",
