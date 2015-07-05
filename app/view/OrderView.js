@@ -75,6 +75,7 @@ Ext.define('MyMenu.view.OrderView',{
         ],
         listeners: {    
             show: function() {
+                Ext.getStore('ProductStore').clearFilter();
                 var containerHtml = [];
                 var totalPrice = 0;
                 Ext.getStore('OrderStore').each(function(record){
