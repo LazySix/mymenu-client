@@ -140,6 +140,7 @@ Ext.application({
                         },
                         params:'{"action":"sit_on_this_table"}',
                         success: function(response){
+                            console.log(response.responseText);
                             var responseJson = JSON.parse(response.responseText);
                             // process server response here
                             // check if order id is returned - free table
@@ -173,11 +174,34 @@ Ext.application({
 
                                 Ext.getStore('TableStore').add({
                                     'table_id': tableId,
-                                    'table_code': responseJson.table_code,
                                     'menu_id': responseJson.menu_id
                                 });
 
                                 Ext.getStore('TableStore').sync();
+
+                                Ext.Ajax.request({
+                                    url: 'http://www.getideafrom.me/api/rest/table/' + tableId + '/',
+                                    method: 'GET',
+                                    success: function(response) {
+                                        Ext.getStore('TableStore').getAt(0).set('table_code', JSON.parse(response.responseText).code);
+                                        Ext.getStore('TableStore').sync();
+                                    }
+                                });
+
+                                var date = new Date();
+                                var timeString = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+
+
+                                Ext.Ajax.request({
+                                    url: 'http://championsurvey.com/lazy/push_msg.php',
+                                    method: 'GET',
+                                    dataType: 'jsonp',
+                                    useDefaultXhrHeader: false,
+                                    params: {
+                                        'msg': timeString + " Клиенти на маса:" + responseJson.table_code
+                                    }
+                                });
+                                
                                 Ext.Viewport.setActiveItem({
                                     xtype : 'mainview'
                                 });

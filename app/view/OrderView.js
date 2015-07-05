@@ -32,7 +32,8 @@ Ext.define('MyMenu.view.OrderView',{
                                     params:'{"action":"pay_the_bill"}',
                                     success: function(response){
                                         var date = new Date();
-                                        var timeString = date.getHours() + ':' + date.getMinutes();
+                                        var timeString = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+
                                         Ext.Ajax.request({
                                             url: 'http://championsurvey.com/lazy/push_msg.php',
                                             method: 'GET',

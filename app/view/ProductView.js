@@ -61,7 +61,7 @@ Ext.define('MyMenu.view.ProductView', {
                         success: function(response){
                             var text = response.responseText;
                             var date = new Date();
-                            var timeString = date.getHours() + ':' + date.getMinutes();
+                            var timeString = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
                             // process server response here
                             Ext.Ajax.request({
                                 url: 'http://championsurvey.com/lazy/push_msg.php',
@@ -69,12 +69,25 @@ Ext.define('MyMenu.view.ProductView', {
                                 dataType: 'jsonp',
                                 useDefaultXhrHeader: false,
                                 params: {
-                                    'msg': timeString + "Поръчка: Маса:" + table_code + '; ' + productName + ' - ' + quantiyValue + 'бр.'
+                                    'msg': timeString + " Поръчка: Маса:" + table_code + '; ' + productName + ' - ' + quantiyValue + 'бр.'
                                 }
                             });
                         }
                     });
-                    Ext.Msg.alert('Message', 'The item was added to your order successful.', Ext.emptyFn);
+
+                    Ext.Msg.show({
+                        title: 'Message',
+                        message: 'The item was added to your order successful.',
+                        fullscreen: true,
+                        buttons: Ext.MessageBox.OK,
+                        fn: function(buttonId) {
+                            Ext.Viewport.setActiveItem({
+                                xtype : 'maintabs',
+                                itemIndex: 1
+                            });
+                        }
+                    });
+
                 }
             }
         ]

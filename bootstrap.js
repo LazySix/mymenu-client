@@ -668,6 +668,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "MyMenu.store.TableStore": [],
   "MyMenu.view.CategoryList": [],
   "MyMenu.view.Main": [],
+  "MyMenu.view.MainTabs": [],
+  "MyMenu.view.MenuView": [],
   "MyMenu.view.OrderView": [],
   "MyMenu.view.ProductList": [],
   "MyMenu.view.ProductListPanel": [],
@@ -1409,6 +1411,12 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "MyMenu.view.Main": [
     "widget.mainview"
+  ],
+  "MyMenu.view.MainTabs": [
+    "widget.maintabs"
+  ],
+  "MyMenu.view.MenuView": [
+    "widget.menuview"
   ],
   "MyMenu.view.OrderView": [
     "widget.orderview"
